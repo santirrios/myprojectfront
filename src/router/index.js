@@ -28,6 +28,11 @@ const routes = [
     path: '/listventas',
     name: 'listventas',
     component: () => import( '../views/ListVentas.vue')
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import( '../views/LogOut.vue')
   }
 ]
 

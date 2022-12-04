@@ -9,7 +9,6 @@ export default {
     name:'listventas',
     components:{
         ListVentasComponents
-
     }
 }
 </script>

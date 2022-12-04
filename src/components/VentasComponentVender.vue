@@ -29,9 +29,11 @@ export default {
     },
     methods:{
         agregar(){
+            let contador =0;
             for(let i = 0; i< this.$store.state.productos.length;i++){
                 if(this.id===this.$store.state.productos[i].id){
-                    if(this.$store.state.productos[i].cantidad-this.cantidad>=0){
+                    contador++;
+                    if((this.$store.state.productos[i].cantidad-this.cantidad)>=0){
                         this.$store.state.productos[i].cantidad-=this.cantidad
                     this.productos={
                         name:this.$store.state.productos[i].name,
@@ -40,22 +42,21 @@ export default {
                         total:this.$store.state.productos[i].precio*this.cantidad
                     }
                     this.$store.state.productosVenta.push(this.productos)
-
                     this.productos=[]
-                    this.error=""
-                        
+                    this.error=""  
                     }else{
-                        this.error="no hay suficiente en el inventario"
-
+                        contador++;
                     }
-                    
                 }else{
-                    this.error="no existe este id en la base de datos"
                 }
-
             }
-            
-         
+            if(contador==0){
+                        this.error="no existe este id en la base de datos"
+                    }else if(contador==2){
+                        this.error="no hay suficiente en el inventario"
+                    }else{
+                        this.error=""
+                    }
         }
     }
 }

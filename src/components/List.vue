@@ -45,9 +45,6 @@ export default {
       this.$store.dispatch('reloadDataAction');
     }
 
-  },
-  mounted:function(){
-    this.$store.dispatch('reloadDataAction');
   }
 }
 </script>

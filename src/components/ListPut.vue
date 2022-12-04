@@ -69,7 +69,8 @@ export default {
       }).then((response) => {
         this.idProducto=0;
         this.nombreProducto="";
-        this.cantidadProducto=0
+        this.cantidadProducto=0;
+        this.precioProducto=0;
         this.$store.dispatch('reloadDataAction');
       });
     }

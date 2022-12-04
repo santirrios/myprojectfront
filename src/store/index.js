@@ -76,22 +76,6 @@ export default new Vuex.Store({
       }catch(err){
         console.log(err)
       }
-    },
-    loginFalse(state){
-      try{
-        let obje={
-          estado:false,
-          email:""
-        };
-        let objeJson = JSON.stringify(obje);
-        fetch('http://127.0.0.1:5001/vue-firebase-fbc54/us-central1/appp/estado',{
-          method:'put',
-          body:objeJson
-        }).then((response)=>{
-        })
-      }catch(err){
-        console.log(err)
-      }
     }
   },
   actions: {

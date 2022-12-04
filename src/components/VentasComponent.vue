@@ -33,15 +33,6 @@ export default {
         VentasComponentListVenta,
         VentasComponentTotal
 
-    },
-     methods:{
-    actualizarProductos(){
-      this.$store.dispatch('reloadDataAction');
-    }
-
-    },
-    mounted:function(){
-      this.$store.dispatch('reloadDataAction');
     }
 }
 </script>

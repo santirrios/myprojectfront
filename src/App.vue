@@ -10,22 +10,22 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item" v-if="$store.state.registrado!==true">
-        <a class="nav-link text-white" href="/registrarse">Registrarse</a>
+        <router-link class="nav-link text-white" to="/registrarse">Registrarse</router-link>
       </li>
       <li class="nav-item"  v-if="$store.state.registrado!==true" >
-        <a class="nav-link text-white" href="/iniciosesion">Iniciar sesion</a>
+        <router-link class="nav-link text-white" to="/iniciosesion">Iniciar sesion</router-link>
       </li>
       <li class="nav-item active" v-if="$store.state.registrado===true">
-        <a class="nav-link text-white" href="/">Home</a>
+        <router-link class="nav-link text-white" to="/">Home</router-link>
       </li>
       <li class="nav-item active" v-if="$store.state.registrado===true">
-        <a class="nav-link text-white" href="/ventas">Vender</a>
+        <router-link class="nav-link text-white" to="/ventas">Vender</router-link>
       </li>
       <li class="nav-item active" v-if="$store.state.registrado===true">
-        <a class="nav-link text-white" href="/listventas">Lista ventas</a>
+        <router-link class="nav-link text-white" to="/listventas">Lista ventas</router-link>
       </li>
       <li class="nav-item active" v-if="$store.state.registrado===true">
-        <a class="nav-link text-white" @click="logout">Logout</a>
+        <router-link class="nav-link text-white" to="/logout">Log out</router-link>
       </li>
       
     </ul>
@@ -39,23 +39,17 @@
 export default {
   name:'app',
     components:{
-
     },
     data(){
         return{
         }
     },
     methods:{
-      logout(){
-        this.$store.dispatch('loginFalseAction');
-        this.$store.state.email=""
-        this.$store.state.registrado=false
-        
-      }
     },
     mounted:function(){
     this.$store.dispatch('checkLoginAction');
     this.$store.dispatch('reloadDataAction');
+    this.$store.dispatch('reloadDataVentasAction');
   }
 }
 </script>

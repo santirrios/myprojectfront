@@ -48,6 +48,8 @@ export default {
                         this.email=""
                         this.password=""
                         this.$store.dispatch('loginTrueAction');
+                        this.$store.dispatch('reloadDataAction');
+                        this.$store.dispatch('reloadDataVentasAction');
                         this.$router.push("/")
                     }else{
                         this.error=true
