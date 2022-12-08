@@ -54,6 +54,8 @@ export default new Vuex.Store({
             console.log(data.estado)
             state.registrado=data.estado
             state.email=data.email
+            this.dispatch('reloadDataAction');
+            this.dispatch('reloadDataVentasAction');
           })
         })
       }catch(err){

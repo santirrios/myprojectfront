@@ -14,6 +14,8 @@ export default {
   },
   methods: {
     venderbtn() {
+      let numeroVentas = this.$store.state.productosVenta.length;
+      let contador=0;
       if (this.$store.state.productosVenta.length !== 0) {
         this.$store.state.productosVenta.forEach((element) => {
           let object = {
@@ -32,6 +34,12 @@ export default {
             }
           ).then((response) => {
             console.log(response);
+            contador++;
+            if(contador===numeroVentas){
+              this.$store.dispatch('reloadDataVentasAction')
+              this.$store.state.productosVenta=[]
+              this.error = "";
+            }
           });
         });
 
@@ -49,11 +57,11 @@ export default {
           }).then((response) => {});
         });
 
-        this.$store.state.productosVenta=[]
-        this.error = "";
+        
       } else {
         this.error = "ingrese al menos un producto por favor";
       }
+      
     },
   },
 };

@@ -11,52 +11,59 @@
 
             <button class="btn btn-primary">Agregar</button>
         </form>
-        <label class="d-block text-white" v-if="error!=''">{{error}}</label>
+        <label class="d-block text-white" v-if="error != ''">{{ error }}</label>
 
     </div>
 </template>
 <script>
 export default {
-    name:'ventasvender',
-    data(){
-        return{
-            productos:[],
-            id:0,
-            cantidad:0,
-            contador:0,
-            error:""
+    name: 'ventasvender',
+    data() {
+        return {
+            productos: [],
+            id: 0,
+            cantidad: 0,
+            contador: 0,
+            error: ""
         }
     },
-    methods:{
-        agregar(){
-            let contador =0;
-            for(let i = 0; i< this.$store.state.productos.length;i++){
-                if(this.id===this.$store.state.productos[i].id){
-                    contador++;
-                    if((this.$store.state.productos[i].cantidad-this.cantidad)>=0){
-                        this.$store.state.productos[i].cantidad-=this.cantidad
-                    this.productos={
-                        name:this.$store.state.productos[i].name,
-                        id:this.id,
-                        cantidad:this.cantidad,
-                        total:this.$store.state.productos[i].precio*this.cantidad
-                    }
-                    this.$store.state.productosVenta.push(this.productos)
-                    this.productos=[]
-                    this.error=""  
-                    }else{
+    methods: {
+        agregar() {
+            let contador = 0;
+            for (let i = 0; i < this.$store.state.productos.length; i++) {
+                if (this.cantidad > 0) {
+                    if (this.id === this.$store.state.productos[i].id) {
                         contador++;
+                        if ((this.$store.state.productos[i].cantidad - this.cantidad) >= 0) {
+                            this.$store.state.productos[i].cantidad -= this.cantidad
+                            this.productos = {
+                                name: this.$store.state.productos[i].name,
+                                id: this.id,
+                                cantidad: this.cantidad,
+                                total: this.$store.state.productos[i].precio * this.cantidad
+                            }
+                            this.$store.state.productosVenta.push(this.productos)
+                            this.productos = []
+                            this.error = ""
+                        } else {
+                            contador++;
+                        }
+                    } else {
+
                     }
-                }else{
+
+                } else {
+                    contador = 50;
                 }
+
             }
-            if(contador==0){
-                        this.error="no existe este id en la base de datos"
-                    }else if(contador==2){
-                        this.error="no hay suficiente en el inventario"
-                    }else{
-                        this.error=""
-                    }
+            if (contador == 0) {
+                this.error = "no existe este id en la base de datos"
+            } else if (contador == 2) {
+                this.error = "no hay suficiente en el inventario"
+            } else if(contador==50) {
+                this.error = "ingrese cantidad de uno o mas"
+            }
         }
     }
 }
